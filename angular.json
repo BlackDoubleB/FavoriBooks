@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FavoriBooks": {
+    "favoribooks": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "FavoriBooks:build:production"
+              "buildTarget": "favoribooks:build:production"
             },
             "development": {
-              "buildTarget": "FavoriBooks:build:development"
+              "buildTarget": "favoribooks:build:development"
             }
           },
           "defaultConfiguration": "development"
