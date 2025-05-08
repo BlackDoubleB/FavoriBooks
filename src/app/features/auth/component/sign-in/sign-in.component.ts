@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormControl,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { isRequired, hasEmailError } from '../../utils/validators';
+import { toast } from 'ngx-sonner';
 
 interface FormSignIn {
   email: FormControl<string | null>;
@@ -23,7 +24,7 @@ interface FormSignIn {
 export default class SignInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
-  private _router = inject(RouterLink);
+  private _router = inject(Router);
 
   isRequired(field: 'email' | 'password') {
     return isRequired(field, this.form);
@@ -51,6 +52,20 @@ export default class SignInComponent {
 
       await this._authService.signIn({email, password});
       toast.success("Hello, welcome back!")
-    } catch (error) {}
+      this._router.navigateByUrl('/home');
+    } catch (error) {
+      toast.error('Invalid email or password');
+    }
+  }
+
+  async submitWhithGoogle() {
+    try{
+      await this._authService.signWhithGoogle();
+      toast.success("Hello, welcome back!");
+      this._router.navigateByUrl('/home');
+    }catch (error) {
+      console.log("Ocurrio",error);
+      toast.error('Invalid email or password');
+    }
   }
 }
