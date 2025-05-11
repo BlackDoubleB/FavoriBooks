@@ -1,9 +1,16 @@
 import { Routes } from '@angular/router';
+import LayoutComponent from './shared/components/layout/layout.component';
+import { privateGuard, publicGuard } from './core/auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth/sign-in', pathMatch: 'full' },
-  { path: 'home', loadComponent: () => import('./pages/home/home.component') },
   {
+    canActivateChild: [privateGuard()],
+    path:'',
+    component: LayoutComponent,
+    loadChildren: () => import('./features/features.routes'),
+  },
+  {
+    canActivateChild:[publicGuard()],
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.routes'),
   },

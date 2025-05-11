@@ -18,8 +18,7 @@ interface FormSignIn {
 @Component({
   selector: 'app-sign-in',
   imports: [RouterLink, ReactiveFormsModule],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.css',
+  templateUrl: './sign-in.component.html'
 })
 export default class SignInComponent {
   private _formBuilder = inject(FormBuilder);

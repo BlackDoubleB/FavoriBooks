@@ -1,17 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
 import { AuthStateService } from '../../services/auth/auth-state.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-logout-button',
-  imports: [RouterModule],
+  imports: [],
   templateUrl: './logout-button.component.html',
+  styleUrl: './logout-button.component.css'
 })
 export class LogoutButtonComponent {
   private _authState = inject(AuthStateService);
   private _router = inject(Router);
 
-  async logOut(){
+  async logOut() {
     await this._authState.logOut();
-    this._router.navigateByUrl('/auth/sign-in')
+    this._router.navigateByUrl('/auth/sign-in');
   }
 }

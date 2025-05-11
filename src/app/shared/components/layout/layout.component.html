@@ -1,0 +1,19 @@
+<div class="min-h-screen flex flex-col">
+  <header class="bg-gray-900 h-[80px] w-full px-4 flex flex-col items-center">
+    <nav class="flex items-center justify-between max-w-screen-lg w-full h-full ">
+      <a class="text-2xl font-bold text-amber-50" routerLink="/home"
+        >FavoriBooks</a
+      >
+      <app-logout-button></app-logout-button>
+    </nav>
+  </header>
+
+  <main class="flex items-center justify-center flex-1 w-full bg-gray-800 ">
+   <div class="max-w-screen-lg w-full  ">
+    <router-outlet></router-outlet>
+   </div>
+  </main>
+
+
+  <footer class="bg-black text-white p-5 text-center">Esto es el footer</footer>
+</div>
