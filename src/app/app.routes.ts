@@ -7,7 +7,7 @@ export const routes: Routes = [
     canActivateChild: [privateGuard()],
     path:'',
     component: LayoutComponent,
-    loadChildren: () => import('./features/features.routes'),
+    loadChildren: () => import('./features/list/features.routes'),
   },
   {
     canActivateChild:[publicGuard()],

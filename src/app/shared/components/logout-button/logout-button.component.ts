@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { AuthStateService } from '../../services/auth/auth-state.service';
+import { AuthStateService } from '../../../features/services/auth/auth-state.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout-button',
   imports: [],
-  templateUrl: './logout-button.component.html',
-  styleUrl: './logout-button.component.css'
+  templateUrl: './logout-button.component.html'
 })
 export class LogoutButtonComponent {
   private _authState = inject(AuthStateService);

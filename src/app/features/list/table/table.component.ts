@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import {  RouterLink } from '@angular/router';
-import { List } from '../../../features/list/data-access/list.service';
+import { List } from '../data-access/list.service';
 @Component({
   selector: 'app-table',
   imports: [RouterLink],

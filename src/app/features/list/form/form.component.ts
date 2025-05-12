@@ -1,7 +1,7 @@
 import { Component, effect, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toast } from 'ngx-sonner';
-import { List, ListCreate, ListService } from '../../../features/list/data-access/list.service';
+import { List, ListCreate, ListService } from '../data-access/list.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from "@angular/core";
 import { addDoc, collection, collectionData, doc, Firestore, getDoc, query, updateDoc, where } from "@angular/fire/firestore";
-import { AuthStateService } from "../../../shared/services/auth/auth-state.service";
+import { AuthStateService } from "../../services/auth/auth-state.service";
 import { catchError, Observable, tap, throwError } from "rxjs";
 import { toSignal } from '@angular/core/rxjs-interop';
 export interface List {
