@@ -17,6 +17,7 @@ export default [
       },
     ],
   },
+  { path: 'search', loadComponent: () => import('../book-search/book-search.component') },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   
