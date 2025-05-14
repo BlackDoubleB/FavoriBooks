@@ -1,6 +1,6 @@
 <!-- components/book-search/book-search.component.html -->
 <div class="book-search text-white">
-  <h2 class="font-bold">Buscar Libros:</h2>
+  <h2 class="font-bold text-xl">Books</h2>
 
   <div class="flex gap-2 mb-4 flex-wrap py-5">
     <input
@@ -11,11 +11,11 @@
       (keyup.enter)="searchBooks()"
     />
     <button
-      class="bg-green-600 rounded-lg px-5 py-2 cursor-pointer hover:bg-green-700"
+      class="bg-green-600 rounded-lg px-5 py-2 text-sm cursor-pointer hover:bg-green-700  "
       (click)="searchBooks()"
       [disabled]="isLoading"
     >
-      {{ isLoading ? "Buscando..." : "Buscar" }}
+      {{ isLoading ? "Buscando..." : "Search" }}
     </button>
   </div>
 
@@ -26,71 +26,84 @@
   <div *ngIf="isLoading">Cargando resultados...</div>
 
   <div *ngIf="books.length > 0">
-    <h3 class="font-bold text-lg mb-4 text-white">
-      Resultados ({{ books.length }})
+    <h3 class=" text-lg mb-4 text-white">
+      Results ({{ books.length }})
     </h3>
 
-    <div class="">
-      <div class="flex flex-wrap justify-center gap-5 bg-gray-950 p-5 rounded-lg">
-
-        <div
-        *ngFor="let book of books"
-        class="bg-gray-900 w-3xs h-[420px] px-3  rounded-md shadow-md text-white relative overflow-y-auto  flex flex-col
-        "
+    <div>
+      <div
+        class="flex flex-wrap justify-center gap-5 bg-gray-950 p-5 rounded-lg"
       >
-        <div class="flex flex-col  flex-1 ">
-          <img
-            class="w-32 h-48 object-cover rounded-xs rounded-t-none mx-auto mb-5"
-            [src]="
-              book.volumeInfo.imageLinks?.thumbnail || 'assets/no-cover.png'
-            "
-            alt="Portada de {{ book.volumeInfo.title }}"
-          />
-
-          <div class="space-y-2">
-            <p>
-              <span class="font-semibold text-gray-300">Book: </span>
-              <span class="break-words">{{ book.volumeInfo.title }}</span>
-            </p>
-
-            <p *ngIf="book.volumeInfo.authors">
-              <span class="font-semibold text-gray-300">Author(es): </span>
-              {{ book.volumeInfo.authors.join(", ") }}
-            </p>
-
-            <p *ngIf="book.volumeInfo.publishedDate">
-              <span class="font-semibold text-gray-300">Published: </span>
-              {{ book.volumeInfo.publishedDate }}
-            </p>
-          </div>
-        </div>
-       
-         <!-- button -->
-        <div class="w-full bg-gray-800 sticky bottom-0 pb-3">
-          <a
-            *ngIf="book.volumeInfo.previewLink"
-            [href]="book.volumeInfo.previewLink"
-            target="_blank"
-            class="flex items-center justify-center gap-2 bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition cursor-pointer"
+        <div
+          *ngFor="let book of books"
+          class="bg-gray-900 w-3xs h-[420px]  rounded-md shadow-md text-white relative overflow-y-auto flex flex-col"
+        >
+          <!-- Add to List -->
+        <div class="absolute top-0 right-0 rounded-bl-sm bg-amber-400 cursor-pointer hover:bg-yellow-500">
+         <div class="p-2">
+             <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 1024 1024"
-            >
-              <path
-                fill="currentColor"
-                d="m512 863.36l384-54.848v-638.72L525.568 222.72a96 96 0 0 1-27.136 0L128 169.792v638.72zM137.024 106.432l370.432 52.928a32 32 0 0 0 9.088 0l370.432-52.928A64 64 0 0 1 960 169.792v638.72a64 64 0 0 1-54.976 63.36l-388.48 55.488a32 32 0 0 1-9.088 0l-388.48-55.488A64 64 0 0 1 64 808.512v-638.72a64 64 0 0 1 73.024-63.36"
-              />
-              <path fill="currentColor" d="M480 192h64v704h-64z" />
-            </svg>
-            View in Google Books
-          </a>
+            <path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z" />
+          </svg>
+         </div>
         </div>
-        <!-- fin button -->
-      </div>
+          <!-- Add tok list end -->
+          <div class="flex flex-col flex-1 px-3">
+            <img
+              class="w-32 h-48 object-cover rounded-xs rounded-t-none mx-auto mb-5"
+              [src]="
+                book.volumeInfo.imageLinks?.thumbnail || 'assets/no-cover.png'
+              "
+              alt="Portada de {{ book.volumeInfo.title }}"
+            />
 
+            <div class="space-y-2">
+              <p>
+                <span class="font-semibold text-gray-300">Book: </span>
+                <span >{{ book.volumeInfo.title }}</span>
+              </p>
+
+              <p *ngIf="book.volumeInfo.authors">
+                <span class="font-semibold text-gray-300">Author: </span>
+                {{ book.volumeInfo.authors.join(", ") }}
+              </p>
+
+              <p *ngIf="book.volumeInfo.publishedDate">
+                <span class="font-semibold text-gray-300">Published: </span>
+                {{ book.volumeInfo.publishedDate }}
+              </p>
+            </div>
+          </div>
+
+          <!-- button -->
+          <div class="w-full bg-gray-900 sticky bottom-0 pb-3 px-3">
+            <a
+              *ngIf="book.volumeInfo.previewLink"
+              [href]="book.volumeInfo.previewLink"
+              target="_blank"
+              class="flex items-center justify-center gap-2 bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 1024 1024"
+              >
+                <path
+                  fill="currentColor"
+                  d="m512 863.36l384-54.848v-638.72L525.568 222.72a96 96 0 0 1-27.136 0L128 169.792v638.72zM137.024 106.432l370.432 52.928a32 32 0 0 0 9.088 0l370.432-52.928A64 64 0 0 1 960 169.792v638.72a64 64 0 0 1-54.976 63.36l-388.48 55.488a32 32 0 0 1-9.088 0l-388.48-55.488A64 64 0 0 1 64 808.512v-638.72a64 64 0 0 1 73.024-63.36"
+                />
+                <path fill="currentColor" d="M480 192h64v704h-64z" />
+              </svg>
+              View in Google Books
+            </a>
+          </div>
+          <!-- fin button -->
+        </div>
       </div>
     </div>
   </div>

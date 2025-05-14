@@ -15,6 +15,10 @@ export default [
         path: 'edit/:idList',
         loadComponent: () => import('./form/form.component'),
       },
+       {
+        path: 'view/:idList',
+        loadComponent: () => import('./view-list/view-list.component'),
+      },
     ],
   },
   { path: 'search', loadComponent: () => import('../book-search/book-search.component') },

@@ -5,7 +5,6 @@ import { List } from '../data-access/list.service';
   selector: 'app-table',
   imports: [RouterLink],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.css'
 })
 export class TableComponent {
 
