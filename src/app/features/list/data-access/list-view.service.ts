@@ -1,41 +1,68 @@
-import { inject, Injectable } from "@angular/core";
-import { addDoc, collection, doc, Firestore, updateDoc } from "@angular/fire/firestore";
-import { AuthStateService } from "../../services/auth/auth-state.service";
+import { inject, Injectable, signal } from '@angular/core';
+import {
+  addDoc,
+  collection,
+  collectionData,
+  CollectionReference,
+  doc,
+  Firestore,
+  getDoc,
+  query,
+  updateDoc,
+  where,
+} from '@angular/fire/firestore';
+import { AuthStateService } from '../../services/auth/auth-state.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { List } from './list.service';
 
- export interface BookCreate {
-        title: string;
-        author: string;
-        genre: string;
-        description: string;
-        score: number;
-        review: string;
-        idBook: string;
-    }
+export interface Book {
+  id?: string;
+  title: string;
+  author: string;
+  genre: string;
+  description: string;
+  score: number;
+  review: string;
+  userId?: string;
+  idList?: string;
+}
+export type BookCreate = Omit<Book, 'id'>;
 
-const PATH = 'book'
 @Injectable()
 export class ListViewService {
-    private _firestore = inject(Firestore);
-    private _collection = collection(this._firestore, PATH);
-    private _authState = inject(AuthStateService)
+  private _firestore = inject(Firestore);
+
+  // Método  para obtener referencia a la subcolección de libros
+  getBooksRef(idListDocument: string): Observable<Book[]> {
+     // 1. Obtén la referencia al documento padre en la colección 'lists'
+    const listaDocRef = doc(this._firestore, 'lists', idListDocument);
+
+    // 2. Obtén la referencia a la subcolección 'libros' dentro de ese documento padre
+    const librosCollectionRef: CollectionReference<Book> = collection(listaDocRef, 'libros') as CollectionReference<Book>;
+
+    // 3. Obtén los datos de los documentos en esa subcolección
+    //    collectionData mapea automáticamente cada documento a su data
+    return collectionData(librosCollectionRef, { idField: 'id' }); // { idField: 'id' } añade el ID del documento al objeto
+  }
 
 
-   createBook(book: BookCreate, idList: string) {
-    return addDoc(this._collection,{
-        ...book,
-        userId:this._authState.currentUser?.uid,
-        idList:idList
+  createBook(bookForm: BookCreate, idListDocument: string) {
+    // 1. Obtén la referencia al documento padre en la colección 'lists'
+    const listaDocRef = doc(this._firestore, 'lists', idListDocument);
+    const librosCollectionRef = collection(listaDocRef, 'libros');
+    return addDoc(librosCollectionRef, {
+      ...bookForm
     });
-   }
+  }
 
-   updateBook(book: BookCreate, idBook: string , idList: string) {
-    const docRef = doc(this._collection, idBook);
-    return updateDoc(docRef,{ 
-        ...book,
-        userId:this._authState.currentUser?.uid,
-        idList:idList
-    })
-   }
+  updateBook(bookId: string, bookForm: BookCreate, idListDocument: string,) {
+    const listaDocRef = doc(this._firestore, 'lists', idListDocument);
+     const libroDocRef = doc(listaDocRef, 'libros', bookId);
+    return updateDoc(libroDocRef, {
+      ...bookForm
+    });
+  }
 
 
 }

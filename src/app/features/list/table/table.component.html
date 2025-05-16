@@ -21,7 +21,8 @@
         <td class="px-6 py-4">
           {{ list.completed ? "Completed" : "Not Completed" }}
         </td>
-        <td class="px-6 py-4">
+        <!-- edit -->
+           <td class="px-6 py-4">
           <div class="w-full flex justify-center">
             <a [routerLink]="['/lists/edit/' + list.id]">
               <svg
@@ -48,6 +49,7 @@
             </a>
           </div>
         </td>
+        <!-- end edit -->
         <!-- view -->
         <td class="px-6 py-4">
           <div class="w-full flex justify-center">

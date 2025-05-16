@@ -3,10 +3,12 @@ import { addDoc, collection, collectionData, doc, Firestore, getDoc, query, upda
 import { AuthStateService } from "../../services/auth/auth-state.service";
 import { catchError, Observable, tap, throwError } from "rxjs";
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Book } from "./list-view.service";
 export interface List {
     id:string;
     title:string;
     completed:boolean;
+    libros?: Book[]
 }
 
 export type ListCreate = Omit<List, 'id'>; 
