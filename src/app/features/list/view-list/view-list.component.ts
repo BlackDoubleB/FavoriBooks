@@ -33,6 +33,8 @@ export interface FormAddBook {
   ],
   providers: [ListViewService],
 })
+
+
 export default class DialogOverviewExample {
   private _formBuilder = inject(FormBuilder);
   listViewService = inject(ListViewService);
@@ -99,10 +101,6 @@ export default class DialogOverviewExample {
   } 
   }
 
-
-  async UpdateBook(){
-
-  }
    selectedBook: Book | null = null;
 
   // Agrega este método para manejar la edición
@@ -117,6 +115,12 @@ export default class DialogOverviewExample {
       review: book.review
     });
     this.openDialog();
+  }
+
+  deleteBook(book: Book) {
+      this.listViewService.deleteBook(book.id as string, this.idList as string);
+   
+
   }
 
 }

@@ -113,7 +113,8 @@
     <h4 class="mt-5">Registered Books:</h4>
     <app-table-list-book
       [books]="libros$"
-      (editBook)="onEditBook($event)">
+      (editBook)="onEditBook($event)"
+      (deleteBook)="deleteBook($event)">
     </app-table-list-book>
     <!-- list book -->
   </div>

@@ -18,4 +18,9 @@ export class TableListBookComponent {
     this.editBook.emit(book);
   }
 
+  @Output() deleteBook = new EventEmitter<Book>();
+  onDelete(book: Book) {
+    this.deleteBook.emit(book);
+  }
+
 }

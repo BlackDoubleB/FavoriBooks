@@ -4,6 +4,7 @@ import {
   collection,
   collectionData,
   CollectionReference,
+  deleteDoc,
   doc,
   Firestore,
   getDoc,
@@ -64,5 +65,9 @@ export class ListViewService {
     });
   }
 
-
+  deleteBook(bookId:string, idListDocument: string){
+     const listaDocRef = doc(this._firestore, 'lists', idListDocument);
+     const libroDocRef = doc(listaDocRef, 'libros', bookId);
+     return deleteDoc(libroDocRef);
+  }
 }
