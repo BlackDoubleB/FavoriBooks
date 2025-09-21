@@ -6,21 +6,13 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideHttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideFirebaseApp(() =>
-      initializeApp({
-        projectId: 'favoribooksfire',
-        appId: '1:712470063277:web:bc740af758e37d07c53e24',
-        storageBucket: 'favoribooksfire.firebasestorage.app',
-        apiKey: 'AIzaSyCTXFpIpXNZE4XBLfmJbeOMTxIa35m2jlk',
-        authDomain: 'favoribooksfire.firebaseapp.com',
-        messagingSenderId: '712470063277',
-      })
-    ),
+     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideHttpClient(),

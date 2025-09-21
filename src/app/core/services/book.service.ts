@@ -1,23 +1,22 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
-@Injectable({
-    providedIn: 'root'
-})
 
+@Injectable({ providedIn: 'root' })
 export class BookService {
-    private API_KEY = 'AIzaSyCkt5jRuZYa889gNAXkBG5ZoO9z0C-YpjA'
-    private API_URL = 'https://www.googleapis.com/books/v1/volumes';
+  private BASE_API = environment.apiBaseUrl; 
 
-    constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    searchBooks(query: string, maxResults:number = 10): Observable<any> {
-        const  url = `${this.API_URL}?q=${encodeURIComponent(query)}&maxResults=${maxResults}&key=${this.API_KEY}`;
-        return this.http.get(url);
-    }
-    getBookDetails(bookId: string): Observable<any> {
-        const url = `${this.API_URL}/${bookId}?key=${this.API_KEY}`;
-        return this.http.get(url);
-    }
+  searchBooks(query: string, maxResults: number = 10): Observable<any> {
+    return this.http.get(`${this.BASE_API}/books/search`, {
+      params: { q: query, maxResults }
+    });
+  }
+
+  getBookDetails(bookId: string): Observable<any> {
+    return this.http.get(`${this.BASE_API}/books/${encodeURIComponent(bookId)}`);
+  }
 }
