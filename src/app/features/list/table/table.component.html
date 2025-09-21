@@ -1,13 +1,14 @@
-<div class="relative overflow-x-auto">
+
+  <div class="w-full  overflow-x-auto">
   <table class="w-full text-sm text-gray-500 dark:text-gray-400">
     <thead
       class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center"
     >
       <tr>
-        <th scope="col" class="px-6 py-3">Title</th>
+        <th scope="col" class="px-6 py-3">List title</th>
         <th scope="col" class="px-6 py-3">Completed</th>
-        <th scope="col" class="px-6 py-3">Action</th>
-        <th scope="col" class="px-6 py-3">View</th>
+        <th scope="col" class="px-6 py-3">Edit</th>
+        <th scope="col" class="px-6 py-3">Registered books</th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +22,7 @@
         <td class="px-6 py-4">
           {{ list.completed ? "Completed" : "Not Completed" }}
         </td>
-        <!-- edit -->
+     
            <td class="px-6 py-4">
           <div class="w-full flex justify-center">
             <a [routerLink]="['/lists/edit/' + list.id]">
@@ -49,8 +50,7 @@
             </a>
           </div>
         </td>
-        <!-- end edit -->
-        <!-- view -->
+    
         <td class="px-6 py-4">
           <div class="w-full flex justify-center">
            <a [routerLink]="['/lists/view/' + list.id]">
@@ -69,7 +69,7 @@
            </a>
           </div>
         </td>
-        <!-- end view -->
+    
       </tr>
       } @empty {
       <tr
@@ -78,7 +78,7 @@
         <td colspan="4" class="px-6 py-4 text-center">Not exist List</td>
       </tr>
       }
-      <!--@empty: Es una cláusula que se puede usar con @for para mostrar contenido cuando la colección está vacía -->
+     
     </tbody>
   </table>
 </div>

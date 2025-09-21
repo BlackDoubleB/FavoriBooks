@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
-import { isRequired, hasEmailError } from '../../utils/validators';
+import { isRequired, hasEmailError,hasPasswordError } from '../../utils/validators';
 import { toast } from 'ngx-sonner';
 
 interface FormSignIn {
@@ -33,12 +33,15 @@ export default class SignInComponent {
     return hasEmailError(this.form);
   }
 
+   hasPasswordError() {
+    return hasPasswordError(this.form);
+  }
   form = this._formBuilder.group<FormSignIn>({
     email: this._formBuilder.control('', [
       Validators.required,
       Validators.email,
     ]),
-    password: this._formBuilder.control('', Validators.required),
+    password: this._formBuilder.control('', [Validators.required, Validators.minLength(6)]),
   });
 
   async submit() {

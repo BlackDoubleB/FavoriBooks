@@ -4,10 +4,10 @@
 
   <div class="flex gap-2 mb-4 flex-wrap py-5">
     <input
-      class="bg-gray-200 rounded p-2 text-gray-700 max-w-lg w-full"
+      class="bg-gray-200 rounded p-2 text-gray-700 max-w-lg w-full placeholder-gray-400"
       type="text"
       [(ngModel)]="searchQuery"
-      placeholder="Ingresa título, autor o palabra clave..."
+      placeholder="Enter the title, author or keyword..."
       (keyup.enter)="searchBooks()"
     />
     <button

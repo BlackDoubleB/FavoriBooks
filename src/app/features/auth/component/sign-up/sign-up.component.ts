@@ -7,7 +7,11 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { hasEmailError, isRequired } from '../../utils/validators';
+import {
+  hasEmailError,
+  hasPasswordError,
+  isRequired,
+} from '../../utils/validators';
 import { toast } from 'ngx-sonner';
 
 interface FormSignUp {
@@ -18,7 +22,6 @@ interface FormSignUp {
   selector: 'app-sign-up',
   imports: [RouterLink, ReactiveFormsModule, RouterLink],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css',
 })
 export default class SignUpComponent {
   private _formBuilder = inject(FormBuilder);
@@ -31,13 +34,18 @@ export default class SignUpComponent {
   hasEmailError() {
     return hasEmailError(this.form);
   }
-
+  hasPasswordError() {
+    return hasPasswordError(this.form);
+  }
   form = this._formBuilder.group<FormSignUp>({
     email: this._formBuilder.control('', [
       Validators.required,
       Validators.email,
     ]),
-    password: this._formBuilder.control('', Validators.required),
+    password: this._formBuilder.control('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   async submit() {
@@ -50,10 +58,25 @@ export default class SignUpComponent {
       await this._authService.signUp({ email, password });
       toast.success('User created successfully!');
       this._router.navigateByUrl('/home');
-    } catch (error) {
-      toast.error('Error creating user, please try again!');
+    } catch (error: any) {
+      let msg =
+        error?.message ||
+        error?.code ||
+        'Error creating user, please try again!';
+      if (msg.includes(':')) {
+        msg = msg.split(':').slice(1).join(':').trim();
+      }
+
+      msg = msg
+        .replace(/[()]/g, '') 
+        .replace(/[-/]/g, ' ') 
+        .replace(/auth/g, '') 
+        .replace(/Error/g, '') 
+        .replace(/email/g, 'Email') 
+        .trim();
+      msg = msg.charAt(0).toUpperCase() + msg.slice(1);
+
+      toast.error(msg);
     }
   }
-
-
 }

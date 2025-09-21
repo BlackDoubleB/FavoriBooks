@@ -53,7 +53,7 @@ export default class FormComponent {
       }
 
       toast.success(`List ${id? 'updated' : 'created'} successfully`);
-      this._router.navigateByUrl('/home');
+      this._router.navigateByUrl('/lists');
     }catch(error){
       toast.error('Error creating list');
     }finally{

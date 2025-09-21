@@ -1,24 +1,13 @@
-<section class="bg-gray-50 dark:bg-gray-900">
+<section class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center">
   <div
-    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+    class="w-full flex items-center justify-center"
   >
-    <a
-      href="#"
-      class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-    >
-      <img
-        class="w-8 h-8 mr-2"
-        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-        alt="logo"
-      />
-      Flowbite
-    </a>
     <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+      class="rounded-lg bg-gray-800 max-[500px]:m-5 max-[500px]:w-full w-md"
     >
-      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <div class="space-y-4  p-8 ">
         <h1
-          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+          class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
         >
           Create Account
         </h1>
@@ -42,10 +31,10 @@
               formControlName="email"
             />
             @if(isRequired('email')) {
-              <small class="text-red-500">Este campo es requerido</small>
-              }@if(hasEmailError()) {
-                <small class="text-red-500">El correo debe ser valido</small>
-                }
+            <small class="text-red-500">This field is required</small>
+            }@if(hasEmailError()) {
+            <small class="text-red-500">The email must be valid</small>
+            }
           </div>
           <div>
             <label
@@ -62,8 +51,12 @@
               formControlName="password"
             />
             @if(isRequired('password')) {
-              <small class="text-red-500">Este campo es requerido</small>
-              } 
+            <small class="text-red-500">This field is required</small>
+            }@if(hasPasswordError()) {
+            <small class="text-red-500"
+              >The password must be at least 6 characters.</small
+            >
+            }
           </div>
 
           <button

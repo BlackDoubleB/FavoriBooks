@@ -111,11 +111,13 @@
 
     <!-- list book -->
     <h4 class="mt-5">Registered Books:</h4>
-    <app-table-list-book
+    <div class="overflow-hidden rounded-lg">
+      <app-table-list-book
       [books]="libros$"
       (editBook)="onEditBook($event)"
       (deleteBook)="deleteBook($event)">
     </app-table-list-book>
+    </div>
     <!-- list book -->
   </div>
 </section>
