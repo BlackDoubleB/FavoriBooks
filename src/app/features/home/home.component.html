@@ -1,19 +1,33 @@
-<section>
-  <h1 class="text-white font-bold text-lg pb-5 text-center">
-   WELCOME TO YOUR BOOK SPACE !
-</h1>
-<div class="flex gap-5 flex-col items-center text-justify">
-  <p class="text-white">
-    Create your personal list of favorite books here. Start adding titles you
-    love—everything you save will remain private and visible only to you. You
-    can also explore and search for free books to expand your collection.
-  </p>
-  <div class="rounded-lg overflow-hidden max-w-3xs border-5 border-white">
-    <img
-      class="object-cover aspect-2/2 "
-      src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWwyM3RuZzN0ZGQxMTVwcXRoeDAydWt3ZnJ2cWZuYmQ1Mzd0YnR5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZGjcyagR37DTtvhOUP/giphy.gif"
-    />
-  </div>
-</div>
+<section class="flex flex-col gap-10 items-center">
+  <h1 class="text-white font-bold text-3xl sm:text-5xl text-center">
+    Welcome to your book space !
+  </h1>
 
+  <div
+    class="absolute top-[50%] w-full h-[50rem] rounded-full blur-2xl fondo"
+  ></div>
+
+  <div class="flex gap-10 flex-col items-center text-center max-w-3xl mx-auto z-10">
+    <p class="text-white">
+      Create your personal list of favorite books here. Start adding titles you
+      love—everything you save will remain private and visible only to you. You
+      can also explore and search for free books to expand your collection.
+    </p>
+    <div class="rounded-full overflow-hidden max-w-3xs z-10">
+      <img
+        class="object-cover aspect-2/2"
+        src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWwyM3RuZzN0ZGQxMTVwcXRoeDAydWt3ZnJ2cWZuYmQ1Mzd0YnR5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZGjcyagR37DTtvhOUP/giphy.gif"
+      />
+    </div>
+  </div>
 </section>
+<style>
+  .fondo {
+    background: radial-gradient(
+      circle,
+      rgb(61, 61, 77) 8%,
+      rgb(13, 20, 43) 36%,
+      rgba(16, 16, 44, 0.89) 100%
+    );
+  }
+</style>
